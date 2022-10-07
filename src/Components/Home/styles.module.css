@@ -13,7 +13,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 .container img {
     width: 70%;
+    margin: 0 0 90px 0;
+}
+
+.button{
+    width: 90%;
+    max-width: 150px;
+    min-width: 120px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
 }

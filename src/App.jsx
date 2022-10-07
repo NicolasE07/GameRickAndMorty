@@ -1,23 +1,18 @@
-import './App.css'
-import axios from 'axios'
-import {Home} from './Components/Home'
-import { useEffect } from 'react';
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+
+import { Home } from './Components/Home';
+import { Game } from './Components/Game';
 
 function App() {
-  const getCharacters = async ()=>{
-    const {data} = await axios.get('https://rickandmortyapi.com/api/character');
-    console.log(data)
-  }
-
-  useEffect(()=>{
-    getCharacters()
-  },[])
-
-  return (
-    <div>
-      <Home/>
-    </div>
-  )
+	return (
+		<div className="App">
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/start-game" element={<Game />} />
+			</Routes>
+		</div>
+	);
 }
 
-export default App
+export default App;
