@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './styles.module.css';
+import { Card } from '../Card';
+import { useCards } from '../../hooks/useCards';
 
 const Game = () => {
-	const card = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	const { data, loading } = useCards();
+	const [cardSelected, setCardSelects] = useState([]);
+
+	const handleCard = (idCard) => {
+		setCardSelects((prev) => [...prev, idCard]);
+	};
+
+	useEffect(() => {
+		console.log(cardSelected);
+		if (cardSelected.length === 2) {
+			setCardSelects([])
+		}
+	}, [cardSelected]);
 
 	return (
-		<div className={style.contain}>
-			<div className={style.cards}>
-				{card.map((item, i) => {
-					return (
-						<div key={i} className={style.card}>
-							{item}
-						</div>
-					);
-				})}
+		<>
+			{loading && <h1>CARGANDO...</h1>}
+			<div className={style.contain}>
+				<div className={style.cards}>
+					{data.map((card, i) => {
+						return <Card key={card.id + "-" + i} url={card.image} name={card.name} id={card.id} flipped={card.flipped} handleCard={handleCard}/>;
+					})}
+				</div>
+				<div className={style.infogame}></div>
 			</div>
-            <div className={style.infogame}>
-
-
-            </div>
-		</div>
+		</>
 	);
 };
 
